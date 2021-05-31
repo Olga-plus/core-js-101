@@ -203,7 +203,7 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  const carryover = '\r\n'; // перенос
+  const carryover = '\n'; // перенос
   const strUp = `┌${'─'.repeat(width - 2)}┐${carryover}`;
   const strDown = `└${'─'.repeat(width - 2)}┘${carryover}`;
   const center = (width > 1)
