@@ -52,7 +52,13 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  let sum;
+  if ((value1 + value2) <= Number.MAX_VALUE) {
+    sum = (value1 + value2) / 2;
+  } else {
+    sum = Number.MAX_VALUE;
+  }
+  return sum;
 }
 
 /**
@@ -110,10 +116,21 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  const lenVector1 = Math.sqrt(x1 ** 2 + y1 ** 2);
-  const lenVector2 = Math.sqrt(x2 ** 2 + y2 ** 2);
-  const multyVector = x1 * y1 + x2 * y2;
-  return (multyVector * Math.PI) / (lenVector1 * lenVector2 * 180);
+  const lenVector1 = Math.abs(Math.sqrt(x1 ** 2 + y1 ** 2));
+  const lenVector2 = Math.abs(Math.sqrt(x2 ** 2 + y2 ** 2));
+  const scalar = x1 * x2 + y2 * y1;
+  let angle = 0;
+  if (scalar === 0) {
+    angle = 90;
+  } else {
+    angle = scalar / (lenVector1 * lenVector2);
+  }
+  if (angle === -1) {
+    angle = 180;
+  } else if (angle === 1) {
+    angle = 0;
+  }
+  return (angle * Math.PI) / 180;
 }
 
 /**
@@ -128,8 +145,8 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  return value % 10;
 }
 
 
@@ -144,8 +161,8 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  return Number(value);
 }
 
 /**
