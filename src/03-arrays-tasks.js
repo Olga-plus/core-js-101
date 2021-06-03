@@ -240,9 +240,8 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  // const newarr = arr.map((sum, i) => (sum += i), 0);
-  // return newarr;
-  return arr.map((current) => current * current);
+  let sum = 0;
+  return arr.map((current) => { sum += current; return sum; });
 }
 
 /**
@@ -257,7 +256,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-  return arr.filter((index) => (index + 1), 0);
+  return arr.filter((value, index) => index % 2 !== 0);
 }
 
 
@@ -361,7 +360,7 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-  return (arr.filter((elem) => valueOf(elem))).length;
+  return (arr.filter((elem) => (!elem))).length;
 }
 
 /**
@@ -425,7 +424,7 @@ function toStringList(arr) {
  *    ]
  */
 function sortCitiesArray(arr) {
-  return arr.sort((a, b) => (a.country.charCodeAt(0) - b.country.charCodeAt(0)));
+  return arr.sort((a, b) => ((a.country + a.city) - (b.country + b.city)));
 }
 
 /**
@@ -446,8 +445,8 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return n;
 }
 
 /**
@@ -464,10 +463,7 @@ function getIdentityMatrix(/* n */) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-  const arr = new Array(Math.abs(start - end) + 1).fill(0);
-  const rez = [];
-  arr.map((sum, i) => rez.push(sum + i + 1), start);
-  return rez;
+  return new Array(Math.abs(start - end) + 1).fill(0).map((value, index) => start + index);
 }
 
 /**
@@ -534,7 +530,7 @@ function group(/* array, keySelector, valueSelector */) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  return childrenSelector(arr.toString()).split();
+  return arr.flat().map(childrenSelector);
 }
 
 
