@@ -245,6 +245,9 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(/* num */) {
+  // let revers = 0;
+
+  // return revers;
   throw new Error('Not implemented');
 }
 
@@ -288,6 +291,11 @@ function isCreditCardNumber(/* ccn */) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(/* num */) {
+  // let rez = 0;
+  // for (let i = n1; i <= n.length; i += 1) {
+  //   rez += i;
+  // }
+  // return rez;
   throw new Error('Not implemented');
 }
 
@@ -313,8 +321,26 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const objBrackets = {
+    ')': '(',
+    ']': '[',
+    '}': '{',
+    '>': '<',
+  };
+  const closeBracket = Object.keys(objBrackets);
+  const openBracket = Object.values(objBrackets);
+  return str.split('').reduce((stack, brace) => {
+    if (openBracket.includes(brace)) {
+      stack.push(brace);
+    } else if (closeBracket.includes(brace)
+    && stack[stack.length - 1] === objBrackets[brace]) {
+      stack.pop();
+    } else {
+      stack.push(brace);
+    }
+    return stack;
+  }, []).length === 0;
 }
 
 
