@@ -275,6 +275,9 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
+  // const transform = arr => arr.reduce((a, item, i) => (a.concat(Array.from( { length: i + 1 },
+  //   () => item))
+  //   ), []);
   return arr;
 }
 
@@ -424,7 +427,7 @@ function toStringList(arr) {
  *    ]
  */
 function sortCitiesArray(arr) {
-  return arr.sort((a, b) => ((a.country + a.city) - (b.country + b.city)));
+  return arr.sort((a, b) => a.country.localeCompare(b.country) || a.city.localeCompare(b.city));
 }
 
 /**

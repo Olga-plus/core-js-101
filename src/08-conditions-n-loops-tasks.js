@@ -308,15 +308,16 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  // let rez = 0;
-  // for (let i = n1; i <= n.length; i += 1) {
-  //   rez += i;
-  // }
-  // return rez;
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  let sum = num;
+  if (sum < 9) {
+    sum = num;
+  } else {
+    sum = num.toStrring().split('').map(Number);
+    return sum.reduce((digit, current) => (digit + current), 0);
+  }
+  return sum;
 }
-
 
 /**
  * Returns true if the specified string has the balanced brackets and false otherwise.
@@ -382,10 +383,9 @@ function isBracketsBalanced(str) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
-
 
 /**
  * Returns the commom directory path for specified array of full filenames.
@@ -399,8 +399,25 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  let s = '';
+  for (let i = 0; i < pathes[0].length; i += 1) {
+    s += pathes[0][i];
+    let c = 0;
+    for (let j = 0; j < pathes.length; j += 1) {
+      if (pathes[j].indexOf(s) !== 0) {
+        c = 1;
+        if (c === 1) {
+          break;
+        }
+      }
+    }
+  }
+  s = s.slice(0, -1);
+  while (s.length !== 0 && s[s.length - 1] !== '/') {
+    s = s.slice(0, -1);
+  }
+  return s;
 }
 
 
