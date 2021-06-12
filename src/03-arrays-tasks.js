@@ -533,7 +533,7 @@ function group(/* array, keySelector, valueSelector */) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  return arr.flat().map(childrenSelector);
+  return arr.reduce((acc, val) => acc.concat(childrenSelector(val)), []);
 }
 
 
@@ -549,8 +549,13 @@ function selectMany(arr, childrenSelector) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  let newArr = arr;
+  indexes.map((i) => {
+    newArr = newArr[i];
+    return newArr;
+  });
+  return newArr;
 }
 
 
@@ -573,9 +578,11 @@ function getElementByIndexes(/* arr, indexes */) {
  *
  */
 function swapHeadAndTail(arr) {
-  const len = Math.floor(arr.length / 2);
-  const head = arr.splice(0, len);
-  const tail = arr.splice(-len);
+  const len = arr.length;
+  const round = Math.round(len / 2);
+  const flor = Math.floor(len / 2);
+  const head = arr.splice(0, flor);
+  const tail = arr.splice(round - flor);
   return tail.concat(arr, head);
 }
 
