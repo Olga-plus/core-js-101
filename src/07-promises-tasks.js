@@ -29,7 +29,10 @@
  *                                                    //  Ask her again.';
  */
 function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
+ let promise = new Promise(() => {
+   console.log();
+ });
+ return promise
 }
 
 
