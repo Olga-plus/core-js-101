@@ -29,12 +29,8 @@
  *                                                    //  Ask her again.';
  */
 function willYouMarryMe(/* isPositiveAnswer */) {
- let promise = new Promise(() => {
-   console.log();
- });
- return promise
+  throw new Error('Not implemented');
 }
-
 
 /**
  * Return Promise object that should be resolved with array containing plain values.

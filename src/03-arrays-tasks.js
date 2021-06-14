@@ -275,12 +275,8 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  // const transform = arr => arr.reduce((a, item, i) => (a.concat(Array.from( { length: i + 1 },
-  //   () => item))
-  //   ), []);
   return arr;
 }
-
 
 /**
  * Returns the 3 largest numbers from the specified array
@@ -527,16 +523,12 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-  array.reduce((item) => {
+  return array.reduce((obj, item) => {
     const key = keySelector(item);
-    const newArr = array;
-    newArr[key] = newArr[key] || [];
-    newArr[key].push(valueSelector(item));
-    return newArr;
+    key.push(valueSelector(item));
+    return obj;
   }, {});
-  return array;
 }
-
 
 /**
  * Projects each element of the specified array to a sequence
